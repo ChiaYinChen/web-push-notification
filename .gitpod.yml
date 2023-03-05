@@ -1,0 +1,17 @@
+tasks:
+  - name: Up App
+    command: make up
+  - name: API docs
+    command: gp preview $(gp url 8000)docs
+
+ports:
+  - port: 3000
+    name: Frontend
+    onOpen: open-browser
+  - port: 8000
+    name: Backend
+    onOpen: ignore
+
+vscode:
+  extensions:
+    - ms-azuretools.vscode-docker
