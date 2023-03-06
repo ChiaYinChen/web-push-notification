@@ -2,12 +2,12 @@ tasks:
   - name: Up App
     command: make up
   - name: API docs
-    command: gp preview $(gp url 8000)docs
+    command: gp preview $(gp url 8000)/docs
 
 ports:
   - port: 3000
     name: Frontend
-    onOpen: open-browser
+    onOpen: open-preview
   - port: 8000
     name: Backend
     onOpen: ignore
