@@ -6,6 +6,7 @@ from pydantic import BaseSettings, validator
 
 class Settings(BaseSettings):
 
+    API_PREFIX: str = "/api"
     VAPID_PUBLIC_KEY: str
     VAPID_PRIVATE_KEY: str
     VAPID_CLAIMS_SUB: str

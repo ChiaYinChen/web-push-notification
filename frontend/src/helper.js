@@ -14,11 +14,12 @@ async function subscribe(serviceWorkerReg) {
   let subscription = await serviceWorkerReg.pushManager.getSubscription();
   console.log({subscription});
   if (subscription === null) {
+    const resp = await axios.get('/api/subscribe')
     subscription = await serviceWorkerReg.pushManager.subscribe({
       userVisibleOnly: true,
-      applicationServerKey: 'BOEpL1F_a8QVTVJ_Bkp0MBreT7vAAsRE_SsoQI2e-KFaIaTYgf3HIzahKjBskI2uphfpqbCw6Bg4LQfVbGd6sTk',
+      applicationServerKey: resp.data.public_key
     });
-    axios.post('/subscribe', subscription);
+    await axios.post('/api/subscribe', subscription);
   }
 }
 
