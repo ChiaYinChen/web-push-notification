@@ -1,6 +1,7 @@
-FROM node:17-alpine3.14
+FROM node:16
 WORKDIR /code
 ENV TZ=Asia/Taipei
-COPY . .
+COPY ./package.json .
 RUN npm install
+COPY . .
 ENTRYPOINT ["npm"]
