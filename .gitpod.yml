@@ -1,16 +1,24 @@
 tasks:
   - name: Up App
-    command: make up
+    init: |
+      make build
+    command: |
+      make up
+      gp sync-done deploy
   - name: API docs
-    command: gp preview $(gp url 8000)/docs
+    command: |
+      gp sync-await deploy
+      gp preview $(gp url 8000)/docs --external
 
 ports:
   - port: 3000
     name: Frontend
-    onOpen: open-preview
+    onOpen: open-browser
+    visibility: public
   - port: 8000
     name: Backend
     onOpen: ignore
+    visibility: public
 
 vscode:
   extensions:
